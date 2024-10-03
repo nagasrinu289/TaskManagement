@@ -41,6 +41,16 @@ const Nav = () => {
         >
           Add Employee
         </NavLink>
+        <NavLink 
+          to="/admin/showEmployees" 
+          className={({ isActive }) => 
+            isActive 
+              ? "text-blue-400 px-3 py-2 rounded-md text-sm font-medium" 
+              : "text-white hover:text-blue-300 px-3 py-2 rounded-md text-sm font-medium"
+          }
+        >
+          show Employee
+        </NavLink>
       </div>
       <button onClick={logout} className="mt-4 sm:mt-0 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium">
         Logout

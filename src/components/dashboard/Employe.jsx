@@ -3,7 +3,7 @@ import { useAuthContext } from "../../useAuth";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 const Employe = () => {
-  const { user, tasks } = useAuthContext();
+  const { user, tasks,setUser } = useAuthContext();
   const [employeTasks, setEmployeTasks] = useState([]);
 
   useEffect(() => {
@@ -13,15 +13,11 @@ const Employe = () => {
 
   const handleStatusChange = async (taskId, newStatus) => {
     try {
-      // Reference to the task document in Firestore
       const taskRef = doc(db, "tasks", taskId);
-
-      // Update the task's status in Firestore
       await updateDoc(taskRef, {
         status: newStatus,
       });
 
-      // Optionally, update the local state to reflect the change immediately
       setEmployeTasks((prevTasks) =>
         prevTasks.map((task) =>
           task.id === taskId ? { ...task, status: newStatus } : task
@@ -33,6 +29,10 @@ const Employe = () => {
       console.error("Error updating task status:", error);
     }
   };
+
+  const logout = ()=>{
+    setUser(null);
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -71,10 +71,11 @@ const Employe = () => {
                   </div>
                 );
               })}
+              {employeTasks.length !== 0 || <p>you have no tasks</p>}
           </ul>
         </div>
         <div className="mt-6">
-          <button className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+          <button onClick={logout} className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
             Logout
           </button>
         </div>

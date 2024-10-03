@@ -1,9 +1,11 @@
 import React from 'react'
+import Nav from './Nav'
+import TaskPage from '../Pages/TaskPage'
 
 const Manager = () => {
   return (
     <div>
-      Manager Dashboard 
+      <TaskPage></TaskPage>
     </div>
   )
 }

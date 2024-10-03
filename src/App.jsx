@@ -21,12 +21,13 @@ const App = () => {
       <Router>
       {user?.id==='manager' && <Nav></Nav>}
         <Routes>
-          <Route path="/" element={<ShowEmployes />} />
+          <Route path="/" element={<Login />} />
           <Route element={<Layout />}>
             <Route path="admin" element={<Manager />}  ></Route>
             <Route path='admin/newTask' element={<AddTask />} />
             <Route path='admin/newEmploye' element={<AddEmploye />} />
             <Route path='admin/task' element={<TaskPage />} />
+            <Route path='admin/showEmployees' element={<ShowEmployes />} />
           </Route>
           <Route element={<LayoutEmp />}>
             <Route path="employe" element={<Employe />}  ></Route>
